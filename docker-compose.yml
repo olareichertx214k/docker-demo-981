@@ -1,0 +1,19 @@
+version: '3.8'
+services:
+  app:
+    build: .
+    ports:
+      - "4187:5364"
+    environment:
+      - NODE_ENV=production
+    volumes:
+      - ./data:/app/data
+  db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_DB: docker_demo_981
+      POSTGRES_PASSWORD: changeme
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+volumes:
+  pgdata:
